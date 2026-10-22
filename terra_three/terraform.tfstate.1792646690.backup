@@ -1,0 +1,137 @@
+{
+  "version": 4,
+  "terraform_version": "1.16.4",
+  "serial": 83,
+  "lineage": "68066c55-a963-da26-f1f2-1209f0d0c8c5",
+  "outputs": {
+    "task3_load_balancer_public_ip": {
+      "value": "40.117.130.73",
+      "type": "string"
+    },
+    "task3_resource_group_name": {
+      "value": "task3-rg",
+      "type": "string"
+    },
+    "task3_web_vm_1_private_ip": {
+      "value": "10.0.1.5",
+      "type": "string"
+    },
+    "task3_web_vm_2_private_ip": {
+      "value": "10.0.1.6",
+      "type": "string"
+    },
+    "task3_web_vm_3_private_ip": {
+      "value": "10.0.1.4",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "azurerm_lb",
+      "name": "task3_load_balancer",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "edge_zone": "",
+            "frontend_ip_configuration": [
+              {
+                "gateway_load_balancer_frontend_ip_configuration_id": "",
+                "id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb/frontendIPConfigurations/task3-lb-frontend",
+                "inbound_nat_rules": [],
+                "load_balancer_rules": [
+                  "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb/loadBalancingRules/task3-http-load-balancing"
+                ],
+                "name": "task3-lb-frontend",
+                "outbound_rules": [],
+                "private_ip_address": "",
+                "private_ip_address_allocation": "Dynamic",
+                "private_ip_address_version": "",
+                "public_ip_address_id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/publicIPAddresses/task3-lb-public-ip",
+                "public_ip_prefix_id": "",
+                "subnet_id": "",
+                "zones": []
+              }
+            ],
+            "id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb",
+            "location": "eastus",
+            "name": "task3-standard-lb",
+            "private_ip_address": "",
+            "private_ip_addresses": [],
+            "resource_group_name": "task3-rg",
+            "sku": "Standard",
+            "sku_tier": "Regional",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_public_ip.task3_lb_public_ip",
+            "azurerm_resource_group.task3_rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_lb_probe",
+      "name": "task3_http_probe",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb/probes/task3-http-health-probe",
+            "interval_in_seconds": 15,
+            "load_balancer_rules": [
+              "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb/loadBalancingRules/task3-http-load-balancing"
+            ],
+            "loadbalancer_id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg/providers/Microsoft.Network/loadBalancers/task3-standard-lb",
+            "name": "task3-http-health-probe",
+            "number_of_probes": 2,
+            "port": 80,
+            "probe_threshold": 1,
+            "protocol": "Http",
+            "request_path": "/",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_lb.task3_load_balancer",
+            "azurerm_public_ip.task3_lb_public_ip",
+            "azurerm_resource_group.task3_rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "task3_rg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/aa746585-241e-4d63-bc21-edc47b4ef2a4/resourceGroups/task3-rg",
+            "location": "eastus",
+            "managed_by": "",
+            "name": "task3-rg",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
